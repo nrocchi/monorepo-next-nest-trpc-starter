@@ -1,0 +1,17 @@
+{
+  "name": "monorepo-next-nest-trpc-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm run --parallel dev",
+    "start:nest-trpc-starter": "pnpm --filter nest-trpc-starter start:prod",
+    "build:nest-trpc-starter": "pnpm --filter nest-trpc-starter build",
+    "start:next-trpc-starter": "pnpm --filter next-trpc-starter start",
+    "build:next-trpc-starter": "pnpm --filter next-trpc-starter build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
