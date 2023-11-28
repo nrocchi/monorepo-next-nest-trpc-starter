@@ -1,3 +1,3 @@
+import { AppRouter } from "@next-trpc-starter/app/server/routers/_app";
 import { createTRPCReact } from "@trpc/react-query";
-import type { AppRouter } from "@nest-trpc-starter/trpc/trpc.router";
 export const trpcReact = createTRPCReact<AppRouter>();

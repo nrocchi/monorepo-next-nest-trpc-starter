@@ -1,5 +1,5 @@
+import { AppRouter } from "@next-trpc-starter/app/server/routers/_app";
 import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
-import { AppRouter } from "@nest-trpc-starter/trpc/trpc.router";
 
 export const trpcNest = createTRPCProxyClient<AppRouter>({
   links: [
