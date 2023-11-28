@@ -1,29 +1,17 @@
-"use client";
-
-import { trpcNextSSR } from "@next-trpc-starter/app/utils/nest-external-api/trpc-next-ssr";
+import { trpcServerCaller } from "@next-trpc-starter/app/utils/nest-external-api/trpc-server-caller";
 import Link from "next/link";
+import ClientSide from "./ClientSide";
 
-export default function NextSSRReactQuery() {
-  const { data, isLoading, isRefetching, status } = trpcNextSSR.hello.useQuery({
-    name: "from React Query with SSR",
-  });
+export default async function NextSSRReactQuery() {
+  const response = await trpcServerCaller.hello({name: 'Server side'});
 
   return (
     <>
-      <h1 className="mb-10">TrpcNextSSR with Nest external API (React Query)</h1>
-      <div className="mb-10">Status: {status}</div>
-
-      {isLoading ? (
-        <div>
-          <h1>Loading...</h1>
-        </div>
-      ) : isRefetching ? (
-        <div>
-          <h1>Refetching...</h1>
-        </div>
-      ) : (
-        <div>Client side: {data}</div>
-      )}
+      <h1 className="mb-10">
+        TrpcNextSSR with Nest external API (React Query)
+      </h1>
+      <div className="mb-10">Server side: {response}</div>
+      <ClientSide />
 
       <Link
         role="button"

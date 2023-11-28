@@ -1,29 +1,17 @@
-"use client";
-
-import { trpcReact } from "@next-trpc-starter/app/utils/nest-external-api/trpc-react/trpc-react";
 import Link from "next/link";
+import ClientSide from "./ClientSide";
+import { trpcServerCaller } from "@next-trpc-starter/app/utils/nest-external-api/trpc-server-caller";
 
-export default function NextReactProvider() {
-  const { data, isLoading, isRefetching, status } = trpcReact.hello.useQuery({
-    name: "from React Query",
-  });
+export default async function NextReactProvider() {
+  const response = await trpcServerCaller.hello({ name: "Server side" });
 
   return (
     <>
-      <h1 className="mb-10">TrpcReactProvider with Nest external API (React Query)</h1>
-      <div className="mb-10">Status: {status}</div>
-
-      {isLoading ? (
-        <div>
-          <h1>Loading...</h1>
-        </div>
-      ) : isRefetching ? (
-        <div>
-          <h1>Refetching...</h1>
-        </div>
-      ) : (
-        <div>Client side: {data}</div>
-      )}
+      <h1 className="mb-10">
+        TrpcReactProvider with Nest external API (React Query)
+      </h1>
+      <div className="mb-10">Server side: {response}</div>
+      <ClientSide />
 
       <Link
         role="button"

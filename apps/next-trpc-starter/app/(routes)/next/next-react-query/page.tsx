@@ -1,29 +1,16 @@
-"use client";
-
-import { trpcNext } from "@next-trpc-starter/app/utils/next-internal-api/trpc-next";
+import { trpcServerCaller } from "@next-trpc-starter/app/utils/next-internal-api/trpc-server-caller";
 import Link from "next/link";
+import ClientSide from "./ClientSide";
 
-export default function NextReactQuery() {
-  const { data, isLoading, isRefetching, status } = trpcNext.hello.useQuery({
-    name: "from React Query",
-  });
+export default async function NextReactQuery() {
+  const response = await trpcServerCaller.hello({ name: "Server side" });
+
 
   return (
     <>
       <h1 className="mb-10">TrpcNext with Next internal API (React Query)</h1>
-      <div className="mb-10">Status: {status}</div>
-
-      {isLoading ? (
-        <div>
-          <h1>Loading...</h1>
-        </div>
-      ) : isRefetching ? (
-        <div>
-          <h1>Refetching...</h1>
-        </div>
-      ) : (
-        <div>Client side: {data}</div>
-      )}
+      <div className="mb-10">Server side: {response}</div>
+      <ClientSide />
 
       <Link
         role="button"

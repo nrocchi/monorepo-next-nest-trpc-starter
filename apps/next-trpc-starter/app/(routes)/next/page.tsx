@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default async function Nest() {
+export default async function Next() {
   return (
     <>
     <h1>Trpc calls with Next internal API</h1>
